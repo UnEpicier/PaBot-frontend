@@ -37,3 +37,8 @@ next-env.d.ts
 
 # Env
 .env
+.env.example
+
+#Docker volume
+/redis
+/redis-insight

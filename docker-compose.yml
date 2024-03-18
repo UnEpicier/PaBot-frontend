@@ -1,0 +1,14 @@
+version: '3'
+services:
+    redis:
+        image: redis:latest
+        ports:
+            - 6379:6379
+        volumes:
+            - ./redis:/data
+    redisinsight:
+        image: redislabs/redisinsight:1.14.0
+        ports:
+            - 8001:8001
+        volumes:
+            - ./redis-insight:/db
