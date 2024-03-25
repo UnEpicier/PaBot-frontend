@@ -7,8 +7,8 @@ import ConnectToRedis from '@/utils/redis';
 import { connectToDB } from '@/utils/database';
 
 export const GET = async (req: NextRequest) => {
-    const redisClient = await ConnectToRedis();
-    await connectToDB();
+	const redisClient = await ConnectToRedis();
+	await connectToDB();
 
 	// Check Redis connection
 	if ((await redisClient.ping()) != 'PONG') {
@@ -32,9 +32,9 @@ export const GET = async (req: NextRequest) => {
 		try {
 			const count = await GuildSchema.countDocuments();
 
-            redisClient.SET('servers', count, {
-                'EX': 60 * 60 * 12
-            });
+			await redisClient.SET('servers', count, {
+				EX: 60 * 60 * 12,
+			});
 
 			response['servers'] = count;
 		} catch (error) {
@@ -57,10 +57,12 @@ export const GET = async (req: NextRequest) => {
 	const topFiveGuilds = await redisClient.GET('topFiveGuilds');
 	if (!topFiveGuilds) {
 		try {
-			const guilds = await GuildSchema.find().sort({ guildMembersCount: -1 }).limit(5);
+			const guilds = await GuildSchema.find()
+				.sort({ guildMembersCount: -1 })
+				.limit(5);
 
-			redisClient.SET('topFiveGuilds', JSON.stringify(guilds), {
-				'EX': 60 * 60 * 12
+			await redisClient.SET('topFiveGuilds', JSON.stringify(guilds), {
+				EX: 60 * 60 * 12,
 			});
 
 			response['topFiveGuilds'] = guilds;
@@ -86,9 +88,9 @@ export const GET = async (req: NextRequest) => {
 		try {
 			const count = await BanSchema.countDocuments();
 
-			redisClient.SET('bans', count, {
-                'EX': 60 * 60 * 12
-            });
+			await redisClient.SET('bans', count, {
+				EX: 60 * 60 * 12,
+			});
 
 			response['bans'] = count;
 		} catch (error) {
@@ -105,17 +107,17 @@ export const GET = async (req: NextRequest) => {
 		}
 	} else {
 		response['bans'] = bansCount;
-    }
-    
+	}
+
 	// Kicks count
 	const kickCount = await redisClient.GET('kicks');
-	if (!redisServersCount) {
+	if (!kickCount) {
 		try {
 			const count = await KickSchema.countDocuments();
 
-			redisClient.SET('kicks', count, {
-                'EX': 60 * 60 * 12
-            });
+			await redisClient.SET('kicks', count, {
+				EX: 60 * 60 * 12,
+			});
 
 			response['kicks'] = count;
 		} catch (error) {
@@ -131,7 +133,7 @@ export const GET = async (req: NextRequest) => {
 			);
 		}
 	} else {
-		response['kicks'] = redisServersCount;
+		response['kicks'] = kickCount;
 	}
 
 	// Tickets count
@@ -140,9 +142,9 @@ export const GET = async (req: NextRequest) => {
 		try {
 			const count = await TickettingSchema.countDocuments();
 
-			redisClient.SET('tickets', count, {
-                'EX': 60 * 60 * 12
-            });
+			await redisClient.SET('tickets', count, {
+				EX: 60 * 60 * 12,
+			});
 
 			response['tickets'] = count;
 		} catch (error) {

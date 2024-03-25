@@ -7,11 +7,21 @@ import './globals.scss';
 import './styles.scss';
 
 const Home = () => {
-	const [stats, setStats] = useState({
+	const [stats, setStats] = useState<{
+		servers: number;
+		bans: number;
+		kicks: number;
+		tickets: number;
+		topFiveGuilds: Array<{
+			guildName: string;
+			guildPicture: string;
+		}>;
+	}>({
 		servers: 0,
 		bans: 0,
 		kicks: 0,
 		tickets: 0,
+		topFiveGuilds: [],
 	});
 
 	useEffect(() => {
@@ -19,6 +29,8 @@ const Home = () => {
 			const response = await fetch('/api/stats');
 
 			const data = await response.json();
+
+			console.log(data.topFiveGuilds);
 
 			setStats(data);
 		})();
@@ -86,6 +98,26 @@ const Home = () => {
 					) : (
 						<p>Loading...</p>
 					)}
+				</div>
+			</div>
+			<div className='guildsContainer'>
+				<p className='title'>Our best servers</p>
+				<div className='guilds'>
+					{stats.topFiveGuilds.map(guild => (
+						<div
+							key={guild.guildName}
+							className='guild'
+						>
+							<Image
+								src={guild.guildPicture}
+								alt={guild.guildName}
+								width={100}
+								height={100}
+								className='logo'
+							/>
+							<p className='name'>{guild.guildName}</p>
+						</div>
+					))}
 				</div>
 			</div>
 			<footer className='footer'>
