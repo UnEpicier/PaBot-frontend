@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 import { useCookies } from 'next-client-cookies';
 import { useDiscordOAuth } from '@/app/dashboard/hooks/useDiscordOAuth';
 import Arrow from '@/components/assets/arrow';
+import '../globals.scss';
 import './styles.scss';
-import Link from 'next/link';
 
 const Dashboard = () => {
 	const cookies = useCookies();

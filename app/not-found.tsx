@@ -1,5 +1,6 @@
-import './not-found.scss';
 import Link from 'next/link';
+import './globals.scss';
+import './not-found.scss';
 
 const NotFound = () => {
 	return (

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import RoundedCheck from '@/components/assets/roundedCheck';
+import '../../globals.scss';
 import './styles.scss';
 
 const Success = ({ params: { id } }: { params: { id: string } }) => {
