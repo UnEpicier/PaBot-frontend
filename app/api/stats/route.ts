@@ -54,6 +54,31 @@ export const GET = async (req: NextRequest) => {
 	}
 
 	// Top 5 Guilds
+	const topFiveGuilds = await redisClient.GET('topFiveGuilds');
+	if (!topFiveGuilds) {
+		try {
+			const guilds = await GuildSchema.find().sort({ guildMembersCount: -1 }).limit(5);
+
+			redisClient.SET('topFiveGuilds', JSON.stringify(guilds), {
+				'EX': 60 * 60 * 12
+			});
+
+			response['topFiveGuilds'] = guilds;
+		} catch (error) {
+			console.error(error);
+
+			return new Response(
+				JSON.stringify({
+					error: 'Unable to get top 5 guilds.',
+				}),
+				{
+					status: 500,
+				},
+			);
+		}
+	} else {
+		response['topFiveGuilds'] = JSON.parse(topFiveGuilds);
+	}
 
 	// Bans count
 	const bansCount = await redisClient.GET('bans');
