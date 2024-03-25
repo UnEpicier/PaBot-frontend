@@ -126,6 +126,50 @@
 	}
 }
 
+.guildsContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 50px;
+	padding: 25px 100px 50px;
+	background-color: #111223;
+
+	& > .title {
+		font-size: 2rem;
+		font-weight: 400;
+		color: #5d7ae4;
+	}
+
+	.guilds {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: center;
+		align-items: center;
+		gap: 100px;
+
+		& > .guild {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 10px;
+			transition: scale 0.3s ease;
+
+			&:hover {
+				scale: 1.1;
+			}
+
+			& > .logo {
+				border-radius: 50%;
+			}
+
+			& > .name {
+				font-size: 1.1rem;
+				color: #ffffff;
+			}
+		}
+	}
+}
+
 .footer {
 	display: flex;
 	justify-content: center;
