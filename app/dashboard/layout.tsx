@@ -1,7 +1,8 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { CookiesProvider } from 'next-client-cookies/server';
-import './globals.scss';
+import '../globals.scss';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 	description: 'Disocrd moderation bot',
 };
 
-const RootLayout = ({
+const Layout = ({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
@@ -24,4 +25,4 @@ const RootLayout = ({
 	);
 };
 
-export default RootLayout;
+export default Layout;

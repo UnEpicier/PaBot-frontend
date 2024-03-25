@@ -1,0 +1,47 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  width: 100svw;
+  min-height: 100svh;
+  background: var(--main-bg-color) linear-gradient(
+                  107deg,
+                  rgba(93, 122, 228, 0.25) 0.24%,
+                  rgba(17, 18, 35, 0) 27.3%,
+                  rgba(17, 18, 35, 0) 72.75%,
+                  rgba(235, 120, 124, 0.25) 99.52%
+  );
+
+  & > .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > .title {
+      font-size: 7rem;
+      color: #eb787c;
+    }
+
+    & > .description {
+      font-size: 2rem;
+      font-weight: normal;
+      color: #eb787c;
+    }
+  }
+
+  & > .button {
+    padding: 10px 25px;
+    border-radius: 7px;
+    background-color: #4163df;
+    font-size: 1.25rem;
+    color: #ffffff;
+    transition: scale .3s ease, background-color .3s ease;
+
+    &:hover {
+      background-color: #5d7ae4;
+      scale: 1.1;
+    }
+  }
+}
