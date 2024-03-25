@@ -52,7 +52,7 @@ export const GET = async (req: NextRequest) => {
 			},
 		);
 
-		const destination = new URL('/panel', new URL(req.url).origin);
+		const destination = new URL('/dashboard', new URL(req.url).origin);
 		const redirectResponse = NextResponse.redirect(destination);
 
 		redirectResponse.cookies.set(

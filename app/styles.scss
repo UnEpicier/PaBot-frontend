@@ -1,14 +1,11 @@
 .mainContainer {
-	background: linear-gradient(
-			107deg,
-			rgba(93, 122, 228, 0.25) 0.24%,
-			rgba(17, 18, 35, 0) 27.3%,
-			rgba(17, 18, 35, 0) 72.75%,
-			rgba(235, 120, 124, 0.25) 99.52%
-		),
-		#111223;
-	//background: radial-gradient(59.58% 35.15% at 0% 0%, rgba(235, 120, 124, 0.50) 0%, rgba(235, 120, 124, 0.00) 100%), radial-gradient(95.97% 52.61% at 110.24% 76.46%, rgba(93, 122, 228, 0.50) 0%, rgba(93, 122, 228, 0.00) 100%), #111223;
-	background-color: var(--main-bg-color);
+	background: var(--main-bg-color) linear-gradient(
+									107deg,
+									rgba(93, 122, 228, 0.25) 0.24%,
+									rgba(17, 18, 35, 0) 27.3%,
+									rgba(17, 18, 35, 0) 72.75%,
+									rgba(235, 120, 124, 0.25) 99.52%
+	);
 	height: 100svh;
 	width: 100svw;
 
