@@ -1,7 +1,19 @@
 import { createClient } from 'redis';
 
-const client = createClient({ url: process.env.REDIS_URL }).on('error', err =>
-	console.log('Redis error: ', err),
-);
+const redisUrl = process.env.REDIS_URL;
 
-export default client;
+const getRedisClient = async () => {
+	if (!redisUrl) {
+		throw new Error('REDIS_URL is not set');
+	}
+
+	const client = createClient({ url: redisUrl }).on('error', err =>
+		console.log('Redis error: ', err),
+	);
+
+	await client.connect();
+
+	return client;
+};
+
+export default getRedisClient;

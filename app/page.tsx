@@ -4,9 +4,7 @@ import Logo from '../public/assets/pabot-logo.png'
 
 import Image from 'next/image';
 
-import client from '@/data/redis';
-
-const Home = () => {
+const Home = async () => {
 	return (
 		<div className='mainContainer'>
 			<div className='container'>
